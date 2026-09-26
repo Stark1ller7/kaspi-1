@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LEGO EV3 — Стабилизация груза на Каспии</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0b1a30;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    header { text-align: center; margin-bottom: 35px; max-width: 850px; }
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0284c7;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    header p { color: #94a3b8; font-size: 1.1rem; margin-top: 8px; }
+    .slides-container {
+      width: 100%;
+      max-width: 850px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    .slide {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+    .slide-number {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #0284c7;
+      background: rgba(2, 132, 199, 0.12);
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(2, 132, 199, 0.25);
+    }
+    .slide h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #0284c7;
+      display: inline-block;
+    }
+    .slide p { color: #cbd5e1; font-size: 0.98rem; line-height: 1.6; margin-bottom: 15px; }
+    .slide ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .slide ul li {
+      position: relative;
+      padding-left: 22px;
+      color: #e2e8f0;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .slide ul li::before {
+      content: "•";
+      color: #0284c7;
+      font-size: 1.4rem;
+      position: absolute;
+      left: 4px;
+      top: -3px;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+    .card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .card h3 { font-size: 1.05rem; color: #0284c7; margin-bottom: 6px; }
+    .card .stat { font-size: 1.6rem; font-weight: 800; color: #f59e0b; margin-bottom: 4px; }
+    .badge {
+      display: inline-block;
+      background: #0284c7;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    pre {
+      background: #050c1a;
+      border: 1px solid rgba(2, 132, 199, 0.3);
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: monospace;
+      color: #38bdf8;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+    @media (max-width: 600px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      body { padding: 20px 12px; }
+      .slide { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>LEGO EV3: Каспийское Море</h1>
+    <p>Груз стоит, даже когда судно качает — Гиростабилизированная платформа</p>
+  </header>
+
+  <div class="slides-container">
+
+    <div class="slide">
+      <span class="slide-number">Слайд 01</span>
+      <h2>Суть проекта</h2>
+      <p>Робот-корабль с гиростабилизированной грузовой платформой — решение для защиты хрупкого оборудования при перевозке по Каспию без использования дорогих промышленных стабилизаторов[cite: 1].</p>
+      <ul>
+        <li><b>Проблема:</b> Шторм на Каспии качает судно — хрупкая электроника и датчики бьются, смещаются и ломаются[cite: 1].</li>
+        <li><b>Решение:</b> Создание дешевого активного подвеса на базе LEGO EV3 для проверки принципа гашения качки[cite: 1].</li>
+      </ul>
+    </div>
+
+    <div class="slide">
+      <span class="slide-number">Слайд 02</span>
+      <h2>Масштаб проблемы</h2>
+      <p>Осенью и зимой на Каспийском море наступает сезон резких штормов, вызывающих задержки и потери рейсов[cite: 1].</p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="stat">~1,566</div>
+          <h3>Контейнеров в год</h3>
+          <p>Теряется в море по всему миру из-за штормов (World Shipping Council)[cite: 1].</p>
+        </div>
+        <div class="card">
+          <div class="stat">12.3 млн т</div>
+          <h3>Годовой объем</h3>
+          <p>Грузов проходит через порты Казахстана на Каспии ежегодно[cite: 1].</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <span class="slide-number">Слайд 03</span>
+      <h2>Идея: Активный подвес</h2>
+      <p>Не крепить груз намертво, а подвесить его по принципу качелей на карданном подвесе[cite: 1].</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Жесткое крепление</h3>
+          <p>Коробка повторяет каждое движение волны. При каждом крене происходят удары, и груз ломается[cite: 1].</p>
+        </div>
+        <div class="card">
+          <h3>Активный подвес</h3>
+          <p>Платформа компенсирует наклон: датчик измеряет крен, а мотор поворачивает платформу в обратную сторону[cite: 1].</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <span class="slide-number">Слайд 04</span>
+      <h2>Управление и Компоненты EV3</h2>
+      <span class="badge">Робототехника & Pybricks</span>
+      <p>Обратная связь реализована по связке: <b>Гироскоп → Блок EV3 → Сервомотор</b>[cite: 1].</p>
+      <ul>
+        <li><b>GyroSensor (Port S1):</b> Закреплен на корпусе корабля и отслеживает угол крена в реальном времени[cite: 1].</li>
+        <li><b>Motor (Port A):</b> Вращает ось грузовой платформы[cite: 1].</li>
+        <li><b>Карданный подвес:</b> Позволяет удерживать платформу строго горизонтально при качке корпуса[cite: 1].</li>
+      </ul>
+    </div>
+
+    <div class="slide">
+      <span class="slide-number">Слайд 05</span>
+      <h2>Код программы (stabilizer.py)</h2>
+      <p>Алгоритм удержания платформы на языке MicroPython / Pybricks[cite: 1]:</p>
+      <pre>
+from pybricks.ev3devices import Motor, GyroSensor
+from pybricks.parameters import Port
+from pybricks.tools import wait
+
+gyro = GyroSensor(Port.S1)  # Датчик на корпусе
+motor = Motor(Port.A)       # Мотор оси платформы
+
+KP = 1.0   # Усиление (подбирается опытом)
+GEAR = 3   # Градусов мотора на 1° платформы
+
+gyro.reset_angle(0)
+
+while True:
+    roll = gyro.angle()  # Наклон корпуса в градусах
+    motor.track_target(-roll * KP * GEAR)
+    wait(10)</pre>
+    </div>
+
+    <div class="slide">
+      <span class="slide-number">Слайд 06</span>
+      <h2>Вывод проекта</h2>
+      <p>Для перевозки ценных и хрупких грузов такое решение выходит значительно дешевле и легче громоздких судовых стабилизаторов[cite: 1].</p>
+      <ul>
+        <li>Модель на <b>LEGO EV3</b> позволяет полностью подтвердить работоспособность физического принципа на практике[cite: 1].</li>
+        <li>Гравитация и нижний центр тяжести помогают системе гасить колебания[cite: 1].</li>
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>
